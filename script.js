@@ -1,4 +1,5 @@
-let computerChoice = 0
+let computerChoice;
+let playerChoice;
 
 function computerPlay() {
     let computerChoice = Math.floor(Math.random() * 3);
@@ -16,7 +17,7 @@ function computerPlay() {
             console.log('Something is wrong');
             break;
     }
-    return computerChoice;
+    //return console.log(computerChoice);
 }
 
 function playerPlay() {
@@ -24,6 +25,7 @@ function playerPlay() {
     let playerChoice = window.prompt('Rock,Paper,Scissors');
     let passes = validChoice.find(key => key.toUpperCase() === playerChoice.toUpperCase()) != undefined; 
     if (passes) {
+        playerChoice = playerChoice.toLowerCase();
         return console.log(`You chose ${playerChoice}`);
     } else {
        return console.log('Invalid Choice. Try Again');
@@ -31,21 +33,23 @@ function playerPlay() {
 
 }
 function evaluateResult(computerChoice, playerChoice){
+    console.log(computerChoice);
+    console.log(playerChoice);
     let score = 0;
-    switch (playerChoice) {
-        case 'rock' && computerChoice == 'scissors':
-        case 'scissors' && computerChoice == 'paper':
-        case 'paper' && computerChoice == 'rock':
-            score++;
-            console.log('Winner!');
-            break;
-        case computerChoice:
-            console.log('Tie');
-            break;
-        default:
-            score--;
-            console.log('Loser :(');
-            break;
-    } 
+    if (playerChoice == 'rock' && computerChoice == 'scissors'){
+        console.log('Winner!');
+        return score ++;
+    } else if (playerChoice == 'scissors' && computerChoice == 'paper'){
+        console.log('Winner!');
+        return score ++;
+    } else if (playerChoice == 'paper' && computerChoice == 'rock'){
+        console.log('Winner!');
+        return score ++;
+    } else if (playerChoice === computerChoice){
+        return console.log('Tie')
+    } else {
+        console.log('Loser');
+        return score--;
+    }
 
 }
