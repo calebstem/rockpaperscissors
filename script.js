@@ -1,7 +1,9 @@
+let computerChoice = 0;
+let playerChoice = 0;
+let score = 0;
 
-
-function computerPlay() { //rng for computer to choose between rock paper scissors
-    let computerChoice = Math.floor(Math.random() * 3); // chooses a number between 0-3
+let computerPlay = function() { //rng for computer to choose between rock paper scissors
+    computerChoice = Math.floor(Math.random() * 3); // chooses a number between 0-3
     switch(computerChoice) {
         case 0: // if num = 0, computer plays rock
             computerChoice = 'rock';
@@ -17,12 +19,12 @@ function computerPlay() { //rng for computer to choose between rock paper scisso
             break;
     }
     //combineChoices(computerChoice); // wip creating array, not important
-    return console.log(computerChoice); // returns what computer is playing for debugging
+    //return console.log(computerChoice); // returns what computer is playing for debugging
 }
 
-function playerPlay() { //function to ask what the player chooses
+let playerPlay = function() { //function to ask what the player chooses
     const validChoice = ['rock', 'paper', 'scissors'];// array that contains the only three valid choices
-    let playerChoice = window.prompt('Rock,Paper,Scissors');// prompts player to type in Rock Paper Scissors
+    playerChoice = window.prompt('Rock,Paper,Scissors');// prompts player to type in Rock Paper Scissors
     let passes = validChoice.find(key => key.toUpperCase() === playerChoice.toUpperCase()) != undefined; //stolen from stackoverflow. mnakes input case-insensitive. .toLowercase didn't work when I tried it
     if (passes) {//player typed Rock Paper Scissors in any case
         playerChoice = playerChoice.toLowerCase();// converts player choice to lowercase for evaluatingResults
@@ -40,10 +42,9 @@ function combineChoices(){ // wip creating array, not important
     console.log(bothChoice); // wip creating array, not important
 }
 
-function evaluateResult(computerChoice, playerChoice){ //function that compares computer to human
-    console.log(computerChoice); // debugging
-    console.log(playerChoice); // debugging
-    let score = 0; // initalizing score variable
+function evaluateResult(){ //function that compares computer to human
+    //console.log(computerChoice); // debugging
+    //console.log(playerChoice); // debugging
     if (playerChoice == 'rock' && computerChoice == 'scissors'){ //rock beats scissors
         console.log('Winner!'); //self explanitory
         return score ++; //updates score in favor of player because of winning
@@ -60,4 +61,23 @@ function evaluateResult(computerChoice, playerChoice){ //function that compares 
         return score--;// score reflects losing by subtracting a point
     }
 
+}
+
+function roundPlay(){
+    computerPlay();
+    playerPlay();
+    console.log(`Computer chose ${computerChoice}`)
+    evaluateResult();
+}
+
+function game(n){
+   for (let i = 0; i < n; i++) {
+    roundPlay();
+   }
+   
+   if (score > 0){
+       return console.log(`Winner with a score of:${score}`)
+   } else {
+       return console.log(`Loser with a score of:${score}`)
+   }
 }
