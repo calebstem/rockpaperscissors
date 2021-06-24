@@ -22,7 +22,20 @@ let computerPlay = function() { //rng for computer to choose between rock paper 
     //return console.log(computerChoice); // returns what computer is playing for debugging
 }
 
-let playerPlay = function() { //function to ask what the player chooses
+let playerPlay = function(clicked_id) {
+    playerChoice = clicked_id;
+    console.log(playerChoice);
+    computerPlay();
+    console.log(`Computer chose ${computerChoice}`)
+    evaluateResult();
+    if (score == 5 || score == -5){
+        console.log(score);
+        score = 0;
+        return;
+    }
+    }
+
+/*let playerPlay = function() { //function to ask what the player chooses
     const validChoice = ['rock', 'paper', 'scissors'];// array that contains the only three valid choices
     playerChoice = window.prompt('Rock,Paper,Scissors');// prompts player to type in Rock Paper Scissors
     let passes = validChoice.find(key => key.toUpperCase() === playerChoice.toUpperCase()) != undefined; //stolen from stackoverflow. mnakes input case-insensitive. .toLowercase didn't work when I tried it
@@ -34,13 +47,8 @@ let playerPlay = function() { //function to ask what the player chooses
        return console.log('Invalid Choice. Try Again');// i'm pretty sure playerChoice can still be invalid, will fix this in a later update
     }
 
-}
-function combineChoices(){ // wip creating array, not important
-    computerPlay; // wip creating array, not important
-    playerPlay; // wip creating array, not important
-    let bothChoice = [computerChoice, playerChoice] // wip creating array, not important
-    console.log(bothChoice); // wip creating array, not important
-}
+}*/
+
 
 function evaluateResult(){ //function that compares computer to human
     //console.log(computerChoice); // debugging
@@ -61,23 +69,4 @@ function evaluateResult(){ //function that compares computer to human
         return score--;// score reflects losing by subtracting a point
     }
 
-}
-
-function roundPlay(){
-    computerPlay();
-    playerPlay();
-    console.log(`Computer chose ${computerChoice}`)
-    evaluateResult();
-}
-
-function game(n){
-   for (let i = 0; i < n; i++) {
-    roundPlay();
-   }
-   
-   if (score > 0){
-       return console.log(`Winner with a score of:${score}`)
-   } else {
-       return console.log(`Loser with a score of:${score}`)
-   }
 }
