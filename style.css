@@ -1,0 +1,38 @@
+:root {
+    --primary-color: #0a122a;
+    --secondary-color: #99A1A6;
+    --third-color: #de9e36;
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+    background-color: var(--secondary-color);
+    margin: 0;
+}
+
+.header {
+    display: flex;
+    font-size: 15px;
+    padding-top: .1em;
+    width: 100vw;
+    justify-content: space-evenly;
+    background: var(--primary-color);
+    border-bottom: .3em solid var(--third-color);
+}
+
+.headcon {
+    text-shadow: 2px 2px 4px #000000;
+    color: white;
+}
+
+.buttonbox {
+    display: flex;
+    justify-content: space-around;
+    padding: 2em;
+    background: var(--third-color);
+    margin: 50vh;
+}
+
+.button {
+    font-size: 2em;
+}
