@@ -25,6 +25,16 @@ body {
     color: white;
 }
 
+.title {
+    display: flex;
+    justify-content: space-around;
+}
+
+.gameContent{
+    display: flex;
+    justify-content: space-around;
+}
+
 .buttonbox {
     display: flex;
     justify-content: space-around;
@@ -37,7 +47,3 @@ body {
     font-size: 2em;
 }
 
-.gameContent{
-    display: flex;
-    justify-content: space-around;
-}

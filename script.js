@@ -1,6 +1,7 @@
 let computerChoice = 0;
 let playerChoice = 0;
-let score = 0;
+let playerScore = 0;
+let computerScore =0;
 
 let computerPlay = function() { //rng for computer to choose between rock paper scissors
     computerChoice = Math.floor(Math.random() * 3); // chooses a number between 0-3
@@ -28,16 +29,17 @@ let playerPlay = function(clicked_id) {
     computerPlay();
     console.log(`Computer chose ${computerChoice}`)
     evaluateResult();
-    document.getElementById('score').textContent = score;
+    document.getElementById('score').textContent = playerScore;
     document.getElementById('player').textContent = playerChoice;
     document.getElementById('computer').textContent = computerChoice;
-    if (score == 5 || score == -5){
-        if (score == 5){
+    if (playerScore == 5 || computerScore == 5){
+        if (playerScore == 5){
             document.getElementById('player').textContent = 'Winner';
         } else {
             document.getElementById('computer').textContent = 'Winner';
         }
-        score = 0;
+        playerScore = 0;
+        computerScore = 0; 
         return;
     }
     }
@@ -62,18 +64,18 @@ function evaluateResult(){ //function that compares computer to human
     //console.log(playerChoice); // debugging
     if (playerChoice == 'rock' && computerChoice == 'scissors'){ //rock beats scissors
         console.log('Winner!'); //self explanitory
-        return score ++; //updates score in favor of player because of winning
+        return playerScore ++; //updates score in favor of player because of winning
     } else if (playerChoice == 'scissors' && computerChoice == 'paper'){//scissors beat paper
         console.log('Winner!');
-        return score ++;
+        return playerScore ++;
     } else if (playerChoice == 'paper' && computerChoice == 'rock'){//paper beats rock
         console.log('Winner!');
-        return score ++;
+        return playerScore ++;
     } else if (playerChoice === computerChoice){//if computer and player throw the same
         return console.log('Tie')//results in tie
     } else { //was too lazy to type the losing sequence
         console.log('Loser');// the only other options are losing(losing would probably be the default i.e player attempts a non-valid string)
-        return score--;// score reflects losing by subtracting a point
+        return computerScore++;// score reflects losing by subtracting a point
     }
 
 }
