@@ -28,8 +28,15 @@ let playerPlay = function(clicked_id) {
     computerPlay();
     console.log(`Computer chose ${computerChoice}`)
     evaluateResult();
+    document.getElementById('score').textContent = score;
+    document.getElementById('player').textContent = playerChoice;
+    document.getElementById('computer').textContent = computerChoice;
     if (score == 5 || score == -5){
-        console.log(score);
+        if (score == 5){
+            document.getElementById('player').textContent = 'Winner';
+        } else {
+            document.getElementById('computer').textContent = 'Winner';
+        }
         score = 0;
         return;
     }

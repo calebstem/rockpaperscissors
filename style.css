@@ -36,3 +36,8 @@ body {
 .button {
     font-size: 2em;
 }
+
+.gameContent{
+    display: flex;
+    justify-content: space-around;
+}
