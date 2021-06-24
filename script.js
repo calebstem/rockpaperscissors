@@ -2,6 +2,9 @@ let computerChoice = 0;
 let playerChoice = 0;
 let playerScore = 0;
 let computerScore =0;
+let playerEmoji = '';
+let computerEmoji = '';
+let scoreArrow = '';
 
 let computerPlay = function() { //rng for computer to choose between rock paper scissors
     computerChoice = Math.floor(Math.random() * 3); // chooses a number between 0-3
@@ -29,9 +32,7 @@ let playerPlay = function(clicked_id) {
     computerPlay();
     console.log(`Computer chose ${computerChoice}`)
     evaluateResult();
-    document.getElementById('score').textContent = playerScore;
-    document.getElementById('player').textContent = playerChoice;
-    document.getElementById('computer').textContent = computerChoice;
+    displayResult();
     if (playerScore == 5 || computerScore == 5){
         if (playerScore == 5){
             document.getElementById('player').textContent = 'Winner';
@@ -63,19 +64,47 @@ function evaluateResult(){ //function that compares computer to human
     //console.log(computerChoice); // debugging
     //console.log(playerChoice); // debugging
     if (playerChoice == 'rock' && computerChoice == 'scissors'){ //rock beats scissors
-        console.log('Winner!'); //self explanitory
+        scoreArrow = '>';
         return playerScore ++; //updates score in favor of player because of winning
     } else if (playerChoice == 'scissors' && computerChoice == 'paper'){//scissors beat paper
-        console.log('Winner!');
+        scoreArrow = '>';
         return playerScore ++;
     } else if (playerChoice == 'paper' && computerChoice == 'rock'){//paper beats rock
-        console.log('Winner!');
+        scoreArrow = '>';
         return playerScore ++;
     } else if (playerChoice === computerChoice){//if computer and player throw the same
-        return console.log('Tie')//results in tie
+        return scoreArrow = '=';
     } else { //was too lazy to type the losing sequence
-        console.log('Loser');// the only other options are losing(losing would probably be the default i.e player attempts a non-valid string)
+        scoreArrow = '<';
         return computerScore++;// score reflects losing by subtracting a point
     }
 
+}
+
+function displayResult(){
+    document.getElementById('playerScore').textContent = `Player:${playerScore}`;
+    document.getElementById('computerScore').textContent = `Computer:${computerScore}`;
+    translateEmoji();
+    document.getElementById('player').textContent = playerEmoji;
+    document.getElementById('scoreArrow').textContent = scoreArrow;
+    document.getElementById('computer').textContent = computerEmoji;
+}
+
+function translateEmoji(){
+   if (playerChoice == 'rock'){
+        playerEmoji = '🪨';
+   } else if (playerChoice == 'paper'){
+       playerEmoji = '📋';
+   } else if (playerChoice == 'scissors'){
+       playerEmoji = '✂️';
+   }
+
+   if (computerChoice == 'rock'){
+    computerEmoji = '🪨';
+    } else if (computerChoice == 'paper'){
+   computerEmoji = '📋';
+    } else if (computerChoice == 'scissors'){
+   computerEmoji = '✂️';
+    }
+   
 }
